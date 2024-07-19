@@ -7,7 +7,7 @@ const crearEvento = async (req,res)=>{
     try {
         evento.user = req.id
         const eventoGuardado =await evento.save();
-        res.json({
+        return res.json({
             ok:true,
             evento:eventoGuardado
 
@@ -21,10 +21,7 @@ const crearEvento = async (req,res)=>{
         })
     }
     
-    res.json({
-        ok: true,
-        msg: 'crear evento'
-    })
+ 
     
 
 }
@@ -82,7 +79,7 @@ const actualizarEvento = async(req,res)=>{
         const id=req.id
 
         if(!evento){
-            res.status(404).json({
+            return res.status(404).json({
                 ok:false,
                 msg:'Evento no existe por ese id'
             })
@@ -109,16 +106,13 @@ const actualizarEvento = async(req,res)=>{
         
     } catch (error) {
         console.log(error)
-        res.status(500).json({
+        return res.status(500).json({
             ok:false,
             msg:"hable con el administrador"
         })
     }
 
-    res.json({
-        ok: true,
-        eventoID
-    })
+
 }
 const getEventos = async(req,res)=>{
 

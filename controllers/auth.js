@@ -11,7 +11,7 @@ try {
     let usuario = await Usuario.findOne({email})
    
     if(usuario){
-        res.status(400).json({
+        return res.status(400).json({
             ok:false,
             msg:'un usuario existe con ese correo'
         })
@@ -97,6 +97,8 @@ const revalidarToken = async(req,res)=>{
     const token = await generarJWT(id,name)
     res.json({
         msg:"renew",
+        uuid:id,
+        name,
         token
         
     })
